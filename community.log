@@ -1,0 +1,16 @@
+2023-07-05 23:05:44.144  INFO 48687 --- [restartedMain] c.n.community.CommunityApplication       : Starting CommunityApplication on Macbook-Pro.lan with PID 48687 (/Users/wenliang_zeng/Desktop/Graduate_Students/Job/JAVA/Project/community/target/classes started by wenliang_zeng in /Users/wenliang_zeng/Desktop/Graduate_Students/Job/JAVA/Project/community)
+2023-07-05 23:05:44.146 DEBUG 48687 --- [restartedMain] c.n.community.CommunityApplication       : Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2023-07-05 23:05:44.147  INFO 48687 --- [restartedMain] c.n.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2023-07-05 23:05:44.182  INFO 48687 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-05 23:05:44.183  INFO 48687 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-05 23:05:45.697  INFO 48687 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-07-05 23:05:45.721  INFO 48687 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-05 23:05:45.721  INFO 48687 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2023-07-05 23:05:45.808  INFO 48687 --- [restartedMain] o.a.c.c.C.[.[localhost].[/community]     : Initializing Spring embedded WebApplicationContext
+2023-07-05 23:05:45.809  INFO 48687 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1625 ms
+2023-07-05 23:05:46.489  INFO 48687 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-07-05 23:05:46.623  INFO 48687 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-07-05 23:05:46.724  INFO 48687 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-07-05 23:05:46.783  INFO 48687 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/community'
+2023-07-05 23:05:46.787  INFO 48687 --- [restartedMain] c.n.community.CommunityApplication       : Started CommunityApplication in 2.988 seconds (JVM running for 3.612)
+2023-07-05 23:06:21.835  INFO 48687 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
