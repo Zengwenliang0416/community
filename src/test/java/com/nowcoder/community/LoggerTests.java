@@ -10,4 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(classes = CommunityApplication.class)
 public class LoggerTests {
 
+
+
 }
