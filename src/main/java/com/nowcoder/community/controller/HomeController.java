@@ -19,28 +19,29 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
-     @Autowired
+    @Autowired
     private DiscussPostService discussPostService;
-     @Autowired
+    @Autowired
     private Userservice userservice;
-     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String getIndexPage(Model model, Page page){
-         //1.30 1:16:00
-         page.setRows(discussPostService.findDiscussPostRows(0));
-         page.setPath("/index");
 
-         List<DiscussPost> list = discussPostService.findDiscussPosts(0,page.getOffset(),page.getLimit());
-         List<Map<String,Object>> discussPosts = new ArrayList<>();
-         if (list != null) {
-             for (DiscussPost post : list){
-                 Map<String,Object> map = new HashMap<>();
-                 map.put("post",post);
-                 User user = userservice.findUserById(post.getUserId());
-                 map.put("user",user);
-                 discussPosts.add(map);
-             }
-         }
-         model.addAttribute("discussPosts",discussPosts);
-         return "/index";
-     }
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    public String getIndexPage(Model model, Page page) {
+        //1.30 1:16:00
+        page.setRows(discussPostService.findDiscussPostRows(0));
+        page.setPath("/index");
+
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit());
+        List<Map<String, Object>> discussPosts = new ArrayList<>();
+        if (list != null) {
+            for (DiscussPost post : list) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("post", post);
+                User user = userservice.findUserById(post.getUserId());
+                map.put("user", user);
+                discussPosts.add(map);
+            }
+        }
+        model.addAttribute("discussPosts", discussPosts);
+        return "/index";
+    }
 }
