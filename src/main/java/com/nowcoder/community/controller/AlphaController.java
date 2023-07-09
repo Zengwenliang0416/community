@@ -1,6 +1,7 @@
 package com.nowcoder.community.controller;
 
 
+import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.context.event.EventPublicationInterceptor;
 import org.springframework.format.Printer;
 import org.springframework.stereotype.Controller;
@@ -8,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -120,5 +123,39 @@ public class AlphaController {
         list.add(emp);
 
         return list;
+    }
+
+    @RequestMapping(path = "/cookie/set",method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookie(HttpServletResponse response){
+        // 创建cookie，必须带有参数
+        Cookie cookie = new Cookie("code", CommunityUtil.generateUUID());
+        // 设置cookie生效的范围
+        cookie.setPath("/community/alpha");
+        // 设置cookie生存时间
+        cookie.setMaxAge(60 * 10);
+        // 发送cookie
+        response.addCookie(cookie);
+        return "set cookie";
+    }
+
+    @RequestMapping(path = "/cookie/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code){//@CookieValue("code") 获取cookie中key为code的那个
+        System.out.println(code);
+        return "get cookie";
+    }
+
+    @RequestMapping(path = "/session/set",method = RequestMethod.GET)
+    @ResponseBody
+    public String setSession(HttpSession session){//@C
+        session.setAttribute("code",1);
+        return "set cookie";
+    }
+    @RequestMapping(path = "/session/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String getSession(HttpSession session){//@C
+        System.out.println(session.getAttribute("code"));
+        return "get cookie";
     }
 }
