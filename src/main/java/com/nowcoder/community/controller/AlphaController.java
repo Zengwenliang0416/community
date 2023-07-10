@@ -2,8 +2,6 @@ package com.nowcoder.community.controller;
 
 
 import com.nowcoder.community.util.CommunityUtil;
-import org.springframework.context.event.EventPublicationInterceptor;
-import org.springframework.format.Printer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
