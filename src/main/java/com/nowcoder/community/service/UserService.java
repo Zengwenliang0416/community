@@ -13,11 +13,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import sun.security.util.Password;
 
 import java.util.*;
 
 @Service
-public class Userservice implements CommunityConstant {
+public class UserService implements CommunityConstant {
     @Autowired
     private UserMapper userMapper;
     // 注册过程中需要发送邮件，因此需要把发送邮件的客户端和邮件模版注入进来
@@ -140,5 +141,45 @@ public class Userservice implements CommunityConstant {
     }
     public void logout(String ticket){
         loginTicketMapper.updateStatus(ticket,1);
+    }
+    public LoginTicket findLoginTicket(String ticket){
+        return loginTicketMapper.selectByTicket(ticket);
+    }
+    public void updateHeader(int userId, String headerUrl){
+        userMapper.updateHeader(userId, headerUrl);
+    }
+    public Map<String, Object> updatePassword(int userId, String oldPassword,String newPassword,String confirmPassword) {
+        Map<String,Object> map = new HashMap<>();
+        // 空值处理
+        if (StringUtils.isBlank(oldPassword)){
+            map.put("updateOldMsg","请输入原密码！");
+            return map;
+        }
+        if (StringUtils.isBlank(newPassword)){
+            map.put("updateNewMsg","请输入新密码！");
+            return map;
+        }
+        if (StringUtils.isBlank(confirmPassword)){
+            map.put("updateConfirmMsg","请确认密码！");
+            return map;
+        }
+        User user = userMapper.selectById(userId);
+        oldPassword = CommunityUtil.md5(oldPassword+user.getSalt());
+        if (!oldPassword.equals(user.getPassword())) {
+            map.put("updateOldMsg", "该密码与原始密码不符合!");
+            return map;
+        }
+        newPassword = CommunityUtil.md5(newPassword+user.getSalt());
+        if (newPassword.equals(oldPassword)) {
+            map.put("updateNewMsg", "新密码与旧密码相同，请重新输入！");
+            return map;
+        }
+        confirmPassword = CommunityUtil.md5(confirmPassword+user.getSalt());
+        if (!newPassword.equals(confirmPassword)) {
+            map.put("updateConfirmMsg", "确认密码与新密码不一致，请重新输入！");
+            return map;
+        }
+        userMapper.updatePassword(userId,newPassword);
+        return map;
     }
 }
