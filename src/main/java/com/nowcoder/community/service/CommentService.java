@@ -56,5 +56,8 @@ public class CommentService implements CommunityConstant {
         }
         return rows;
     }
+    public Comment findCommentByID(int id){
+        return commentMapper.selectCommentById(id);
+    }
 
 }
