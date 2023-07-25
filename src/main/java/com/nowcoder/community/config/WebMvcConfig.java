@@ -19,8 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private AlphaInterceptor alphaInterceptor;
     @Autowired
     private LoginTicketInterceptor loginTicketInterceptor;
-    @Autowired
-    private LoginRequiredInterceptor loginRequiredInterceptor;
+//    @Autowired
+//    private LoginRequiredInterceptor loginRequiredInterceptor;
     @Autowired
     private MessageInterceptor messageInterceptor;
 
@@ -35,8 +35,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginTicketInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
                 .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
 
-        registry.addInterceptor(loginRequiredInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
-                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
+//        registry.addInterceptor(loginRequiredInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
+//                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
         registry.addInterceptor(messageInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
                 .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
     }

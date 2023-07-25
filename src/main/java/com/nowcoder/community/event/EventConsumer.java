@@ -42,9 +42,9 @@ public class EventConsumer implements CommunityConstant {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
-    @KafkaListener(topics = {TOPIC_COMMENT,TOPIC_LIKE,TOPIC_FOLLOW})
-    public void handleCommentMessage(ConsumerRecord record){
-        if (record==null||record.value()==null){
+    @KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})
+    public void handleCommentMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
             logger.error("消息的内容为空！");
             return;
         }
@@ -61,14 +61,14 @@ public class EventConsumer implements CommunityConstant {
         message.setConversationId(event.getTopic());
         message.setCreateTime(new Date());
 
-        Map<String,Object> content = new HashMap<>();
-        content.put("userId",event.getUserId());
-        content.put("entityType",event.getEntityType());
-        content.put("entityId",event.getEntityId());
+        Map<String, Object> content = new HashMap<>();
+        content.put("userId", event.getUserId());
+        content.put("entityType", event.getEntityType());
+        content.put("entityId", event.getEntityId());
 
-        if (!event.getData().isEmpty()){
-            for (Map.Entry<String,Object> entry : event.getData().entrySet()){
-                content.put(entry.getKey(),entry.getValue());
+        if (!event.getData().isEmpty()) {
+            for (Map.Entry<String, Object> entry : event.getData().entrySet()) {
+                content.put(entry.getKey(), entry.getValue());
             }
         }
         message.setContent(JSONObject.toJSONString(content));
@@ -77,8 +77,8 @@ public class EventConsumer implements CommunityConstant {
 
     // 消费发帖事件
     @KafkaListener(topics = {TOPIC_PUBLISH})
-    public void handlePublishMessage(ConsumerRecord record){
-        if (record==null||record.value()==null){
+    public void handlePublishMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
             logger.error("消息的内容为空！");
             return;
         }
@@ -91,5 +91,25 @@ public class EventConsumer implements CommunityConstant {
         // 从事件的消息中得到帖子的id查到对应的帖子然后存到es服务器中
         DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
         elasticsearchService.saveDiscussPost(post);
+    }
+
+    /**
+     * 消费删帖事件
+     *
+     * @param record
+     */
+    @KafkaListener(topics = {TOPIC_DELETE})
+    public void handleDeleteMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
+            logger.error("消息的内容为空！");
+            return;
+        }
+        // 检查格式
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if (event == null) {
+            logger.error("消息格式错误！");
+            return;
+        }
+        elasticsearchService.deleteDiscussPost(event.getEntityId());
     }
 }
