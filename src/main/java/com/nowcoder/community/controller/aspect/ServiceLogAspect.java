@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * AOP实现日志记录
+ *
  * @author 曾文亮
  * @version 1.0.0
  * @email wenliang_zeng416@163.com
@@ -29,11 +31,12 @@ public class ServiceLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
 
     @Pointcut("execution(* com.nowcoder.community.service.*.*(..))")
-    public void pointcut(){
+    public void pointcut() {
 
     }
+
     @Before("pointcut()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
             return;
@@ -41,15 +44,8 @@ public class ServiceLogAspect {
         HttpServletRequest request = attributes.getRequest();
         String ip = request.getRequestURI();
         String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        String target = joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName();
-        logger.info(String.format("用户[%s],在[%s],访问了[%s].",ip,now,target));
-
-
-
-
-
-
-
+        String target = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        logger.info(String.format("用户[%s],在[%s],访问了[%s].", ip, now, target));
 
 
     }

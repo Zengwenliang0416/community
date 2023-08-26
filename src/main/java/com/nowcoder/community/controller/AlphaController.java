@@ -2,6 +2,8 @@ package com.nowcoder.community.controller;
 
 
 import com.nowcoder.community.util.CommunityUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/alpha")//给这个类提供一个浏览器访问的方法
 public class AlphaController {
+
     @RequestMapping("/hello")
     @ResponseBody//声明不是网页
     public String sayHello(){

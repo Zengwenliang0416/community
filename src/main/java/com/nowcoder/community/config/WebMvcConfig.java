@@ -2,8 +2,10 @@ package com.nowcoder.community.config;
 
 import com.nowcoder.community.controller.MessageInterceptor;
 import com.nowcoder.community.controller.interceptor.AlphaInterceptor;
+import com.nowcoder.community.controller.interceptor.DataInterceptor;
 import com.nowcoder.community.controller.interceptor.LoginRequiredInterceptor;
 import com.nowcoder.community.controller.interceptor.LoginTicketInterceptor;
+import com.nowcoder.community.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -23,6 +25,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //    private LoginRequiredInterceptor loginRequiredInterceptor;
     @Autowired
     private MessageInterceptor messageInterceptor;
+    @Autowired
+    private DataInterceptor dataInterceptor;
 
     // 注册接口，spring在调用的时候会将registry对象传进来，根据传进来的对象注册intercepter
     @Override
@@ -39,5 +43,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
         registry.addInterceptor(messageInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
                 .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
+
+        registry.addInterceptor(dataInterceptor)// 设置不需要拦截的路径，在一个项目当中，静态页面往往是不需要进行拦截的。
+                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpeg","/**/*.png","/**/*.jpg" ); //添加不需要被拦截的路径
+
     }
 }

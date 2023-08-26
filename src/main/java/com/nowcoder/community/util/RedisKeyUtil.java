@@ -2,6 +2,8 @@ package com.nowcoder.community.util;
 
 import jdk.nashorn.internal.ir.IfNode;
 
+import java.util.Date;
+
 /**
  * @author 曾文亮
  * @version 1.0.0
@@ -28,6 +30,13 @@ public class RedisKeyUtil {
     private static final String PREFIX_TICKET = "ticket";
     // 用户缓存
     private static final String PREFIX_USER = "user";
+    // 独立访客
+    private static final String PREFIX_UV = "uv";
+    // 日活跃用户
+    private static final String PREFIX_DAU = "dau";
+    // 帖子的热度
+    private static final String PREFIX_POST = "post";
+
 
     // 通过一个方法获得传入redis中的key
     // like:entity:entityType:entityId -> set(userId)需要知道有哪些人给帖子或者评论点了赞
@@ -65,6 +74,7 @@ public class RedisKeyUtil {
 
     /**
      * 登陆凭证
+     *
      * @param ticket
      * @return
      */
@@ -74,10 +84,64 @@ public class RedisKeyUtil {
 
     /**
      * 用户缓存数据的Key
-     * @param user
+     *
+     * @param userId
      * @return
      */
     public static String getUserKey(int userId) {
         return PREFIX_USER + SPLIT + userId;
     }
+
+    /**
+     * 独立访客的key
+     *
+     * @param date
+     * @return
+     */
+    public static String getUVKey(String date) {
+        return PREFIX_UV + SPLIT + date;
+    }
+
+    /**
+     * 区间UV的key
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public static String getUVKey(String startDate, String endDate) {
+        return PREFIX_UV + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    /**
+     * 单日DAU的key
+     *
+     * @param date
+     * @return
+     */
+    public static String getDAUKey(String date) {
+        return PREFIX_DAU + SPLIT + date;
+    }
+
+    /**
+     * 区间DAU的key
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public static String getDAUKey(String startDate, String endDate) {
+        return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    /**
+     * 帖子的热度
+     * 产生变化的post是多个而不是某一个，因此不用传条件进来
+     * @return
+     */
+    public static String getPostScoreKey() {
+        return PREFIX_POST + SPLIT + "score";
+    }
+
+
 }

@@ -33,6 +33,7 @@ public interface CommunityConstant {
     /**
      * 主题：点赞
      */
+
     String TOPIC_LIKE = "like";
     /**
      * 主题：关注
