@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.nowcoder.community.ElasticsearchTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.038 s <<< FAILURE! - in com.nowcoder.community.ElasticsearchTest
+testSearchByTemplate(com.nowcoder.community.ElasticsearchTest)  Time elapsed: 0.192 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.nowcoder.community.ElasticsearchTest.testSearchByTemplate(ElasticsearchTest.java:171)
+

@@ -1,0 +1,16 @@
+com/nowcoder/community/RedisTests$1.class
+com/nowcoder/community/Consumer.class
+com/nowcoder/community/ElasticsearchTest$1.class
+com/nowcoder/community/ElasticsearchTest.class
+com/nowcoder/community/KafkaTests.class
+com/nowcoder/community/MailTests.class
+com/nowcoder/community/MapperTest.class
+com/nowcoder/community/TransactionTests.class
+com/nowcoder/community/SensitiveTest.class
+com/nowcoder/community/RedisTests.class
+com/nowcoder/community/CommunityApplicationTests.class
+com/nowcoder/community/LoggerTests.class
+com/nowcoder/community/Producer.class
+com/nowcoder/community/KafkaProducer.class
+com/nowcoder/community/BlockingQueueTest.class
+com/nowcoder/community/KafkaConsumer.class

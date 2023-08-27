@@ -8,7 +8,7 @@ import com.nowcoder.community.service.DiscussPostService;
 import com.nowcoder.community.service.ElasticsearchService;
 import com.nowcoder.community.service.MessageService;
 import com.nowcoder.community.util.CommunityConstant;
-import com.sun.xml.internal.ws.api.model.MEP;
+//import com.sun.xml.internal.ws.api.model.MEP;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

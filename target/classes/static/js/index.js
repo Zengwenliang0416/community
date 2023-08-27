@@ -3,6 +3,8 @@ $(function(){
 });
 
 function publish() {
+	console.info("已经点击了")
+
 	$("#publishModal").modal("hide");
 	// 发送AJAX请求之前，将CSRF令牌设置到请求的消息头中
 

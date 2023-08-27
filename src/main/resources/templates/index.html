@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -162,10 +163,9 @@
                         <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
                     </li>
                     <li th:class="|page-item ${page.current==1?'disabled':''}|">
-                        <a class="page-link" th:href="@{${page.path}(current=${(page.current)-1})}">上一页</a>
-                    </li>
+                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
                     <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-                        <a class="page-link" href="#" th:text="${i}">1</a>
+                        <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
                     </li>
                     <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
                         <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
@@ -243,7 +243,7 @@
     </footer>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>

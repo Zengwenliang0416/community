@@ -128,7 +128,6 @@ public class MessageController implements CommunityConstant {
     @RequestMapping(path = "/letter/send",method = RequestMethod.POST)
     @ResponseBody
     public String sendLetter(String toName,String content){
-        Integer.valueOf("abc");
         // 首先要构造发私信的数据
         User target = userService.findUserByName(toName);
         if (target == null) {
