@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="905fa17d-4da4-4115-9e2d-aa93f9cb6029" name="Changes" comment="定时任务完成" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="20230826" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/io/netty/netty-common/4.1.36.Final/netty-common-4.1.36.Final-sources.jar!/io/netty/util/NettyRuntime.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/requests/FilterRequest.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/elasticsearch/plugin/transport-netty4-client/6.4.3/transport-netty4-client-6.4.3-sources.jar!/org/elasticsearch/transport/netty4/Netty4Utils.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="$PROJECT_DIR$/../repository" />
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="$USER_HOME$/Documents/apache-maven-3.6.3/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2SSiDr1PXeEpwMPGSAcV0LWo86C" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;devlop&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/wenliang_zeng/Desktop/Graduate_Students/Job/JAVA/Project/community/src/main/resources/mapper&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.38505748&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;82df41632da476065ce2997900554442&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/mapper" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.CommunityApplication">
+    <configuration name="CommunityApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.nowcoder.community.CommunityApplication" />
+      <module name="community" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nowcoder.community.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElasticsearchTest.testSe" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="community" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nowcoder.community.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.nowcoder.community" />
+      <option name="MAIN_CLASS_NAME" value="com.nowcoder.community.ElasticsearchTest" />
+      <option name="METHOD_NAME" value="testSe" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElasticsearchTest.testSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="community" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nowcoder.community.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.nowcoder.community" />
+      <option name="MAIN_CLASS_NAME" value="com.nowcoder.community.ElasticsearchTest" />
+      <option name="METHOD_NAME" value="testSearch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElasticsearchTest.testSearchByRepository" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="community" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nowcoder.community.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.nowcoder.community" />
+      <option name="MAIN_CLASS_NAME" value="com.nowcoder.community.ElasticsearchTest" />
+      <option name="METHOD_NAME" value="testSearchByRepository" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElasticsearchTest.testSearchByTemplate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="community" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.nowcoder.community.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.nowcoder.community" />
+      <option name="MAIN_CLASS_NAME" value="com.nowcoder.community.ElasticsearchTest" />
+      <option name="METHOD_NAME" value="testSearchByTemplate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommunityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="community" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.nowcoder.community.CommunityApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CommunityApplication" />
+        <item itemvalue="JUnit.ElasticsearchTest.testSearchByTemplate" />
+        <item itemvalue="JUnit.ElasticsearchTest.testSearchByRepository" />
+        <item itemvalue="JUnit.ElasticsearchTest.testSearch" />
+        <item itemvalue="JUnit.ElasticsearchTest.testSe" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="905fa17d-4da4-4115-9e2d-aa93f9cb6029" name="Changes" comment="" />
+      <created>1689146267402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689146267402</updated>
+      <workItem from="1689146268651" duration="6020000" />
+      <workItem from="1689173794439" duration="1633000" />
+      <workItem from="1689175591551" duration="162000" />
+      <workItem from="1689175806535" duration="1869000" />
+      <workItem from="1689177980143" duration="69000" />
+      <workItem from="1689215871340" duration="12542000" />
+      <workItem from="1689231902695" duration="923000" />
+      <workItem from="1689233174882" duration="68000" />
+      <workItem from="1689295103997" duration="21918000" />
+      <workItem from="1689336068684" duration="95000" />
+      <workItem from="1689385212068" duration="4217000" />
+      <workItem from="1689391655715" duration="1673000" />
+      <workItem from="1689399818855" duration="24411000" />
+      <workItem from="1689476015650" duration="26797000" />
+      <workItem from="1689515225979" duration="58000" />
+      <workItem from="1689652541852" duration="4095000" />
+      <workItem from="1689995110588" duration="6602000" />
+      <workItem from="1690109008124" duration="190000" />
+      <workItem from="1690109207486" duration="5866000" />
+      <workItem from="1690189921473" duration="24000" />
+      <workItem from="1690190426974" duration="72000" />
+      <workItem from="1690193516513" duration="2119000" />
+      <workItem from="1690267538253" duration="11310000" />
+      <workItem from="1690296433468" duration="116000" />
+      <workItem from="1690338760922" duration="1268000" />
+      <workItem from="1690380319589" duration="938000" />
+      <workItem from="1690381281089" duration="3513000" />
+      <workItem from="1690961090829" duration="3979000" />
+      <workItem from="1691072892930" duration="333000" />
+      <workItem from="1691375684848" duration="1110000" />
+      <workItem from="1691460363391" duration="2587000" />
+      <workItem from="1691838882382" duration="3905000" />
+      <workItem from="1692152666435" duration="2050000" />
+      <workItem from="1692928659001" duration="858000" />
+      <workItem from="1693053375844" duration="7439000" />
+      <workItem from="1693064813000" duration="4159000" />
+      <workItem from="1693069480004" duration="12000" />
+      <workItem from="1693069888996" duration="782000" />
+      <workItem from="1693070918470" duration="2323000" />
+      <workItem from="1693100752051" duration="3217000" />
+      <workItem from="1693104133242" duration="2504000" />
+      <workItem from="1693106991052" duration="683000" />
+      <workItem from="1693107680499" duration="2000" />
+    </task>
+    <task id="LOCAL-00001" summary="发布帖子、帖子详情完成">
+      <created>1689178023528</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689178023528</updated>
+    </task>
+    <task id="LOCAL-00002" summary="整合Redis优化登录模块、点赞、取消赞、关注、取消关注、粉丝列表、关注列表完成">
+      <created>1689435518044</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689435518044</updated>
+    </task>
+    <task id="LOCAL-00003" summary="整合Redis优化登录模块、点赞、取消赞、关注、取消关注、粉丝列表、关注列表完成">
+      <created>1689435531459</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689435531459</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ElasticSearch实现搜索功能">
+      <created>1690125472559</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690125472559</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ElasticSearch实现搜索功能">
+      <created>1690125476773</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690125476773</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Spring security实现置顶、加精和删除">
+      <created>1690296468376</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690296468376</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Spring security实现置顶、加精和删除">
+      <created>1693056998568</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693056998568</updated>
+    </task>
+    <task id="LOCAL-00008" summary="定时任务完成">
+      <created>1693107515549</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693107515549</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main/20230826" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="发布帖子、帖子详情完成" />
+    <MESSAGE value="整合Redis优化登录模块、点赞、取消赞、关注、取消关注、粉丝列表、关注列表完成" />
+    <MESSAGE value="ElasticSearch实现搜索功能" />
+    <MESSAGE value="Spring security实现置顶、加精和删除" />
+    <MESSAGE value="定时任务完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="定时任务完成" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.thymeleaf.exceptions.TemplateInputException" package="org.thymeleaf.exceptions" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

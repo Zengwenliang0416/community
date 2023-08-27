@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.kafka:spring-kafka:2.2.6.RELEASE" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.springframework.kafka" artifactId="spring-kafka" version="2.2.6.RELEASE" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/springframework/kafka/spring-kafka/2.2.6.RELEASE/spring-kafka-2.2.6.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../repository/org/springframework/kafka/spring-kafka/2.2.6.RELEASE/spring-kafka-2.2.6.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/springframework/kafka/spring-kafka/2.2.6.RELEASE/spring-kafka-2.2.6.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

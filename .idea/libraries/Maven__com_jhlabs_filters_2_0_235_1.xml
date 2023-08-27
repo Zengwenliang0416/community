@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: com.jhlabs:filters:2.0.235-1" type="java-imported" external-system-id="Maven">
+    <properties groupId="com.jhlabs" artifactId="filters" version="2.0.235-1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../repository/com/jhlabs/filters/2.0.235-1/filters-2.0.235-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../repository/com/jhlabs/filters/2.0.235-1/filters-2.0.235-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../repository/com/jhlabs/filters/2.0.235-1/filters-2.0.235-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

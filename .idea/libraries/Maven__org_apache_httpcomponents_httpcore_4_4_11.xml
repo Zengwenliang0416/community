@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.httpcomponents:httpcore:4.4.11" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.apache.httpcomponents" artifactId="httpcore" version="4.4.11" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../repository/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

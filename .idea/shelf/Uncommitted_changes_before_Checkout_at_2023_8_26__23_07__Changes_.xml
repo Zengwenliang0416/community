@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]" date="1693062447276" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2023/8/26, 23:07 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/service/DiscussPostService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/service/DiscussPostService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/DiscussPostService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/controller/LikeController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/controller/LikeController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/LikeController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/controller/CommentController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/controller/CommentController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/CommentController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/util/RedisKeyUtil.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/util/RedisKeyUtil.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/RedisKeyUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/controller/DiscussPostController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/controller/DiscussPostController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/DiscussPostController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/dao/DiscussPostMapper.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/dao/DiscussPostMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/DiscussPostMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/nowcoder/community/controller/AlphaController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/nowcoder/community/controller/AlphaController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_8_26,_23_07_[Changes]/AlphaController.class" />
+  </binary>
+</changelist>

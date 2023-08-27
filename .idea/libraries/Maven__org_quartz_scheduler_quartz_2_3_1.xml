@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.quartz-scheduler:quartz:2.3.1" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.quartz-scheduler" artifactId="quartz" version="2.3.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/quartz-scheduler/quartz/2.3.1/quartz-2.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../repository/org/quartz-scheduler/quartz/2.3.1/quartz-2.3.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../repository/org/quartz-scheduler/quartz/2.3.1/quartz-2.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

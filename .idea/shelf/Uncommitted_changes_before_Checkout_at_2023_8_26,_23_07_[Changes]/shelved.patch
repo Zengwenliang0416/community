@@ -1,0 +1,47 @@
+Index: target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># ServerProperties\nserver.port=8080\nserver.servlet.context-path=/community\n# ThymeleafProperties\nspring.thymeleaf.cache=false\n\n# DataSourceProperties\nspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver\nspring.datasource.url=jdbc:mysql://localhost:3306/community?characterEncoding=utf-8&useSSL=false&serverTimezone=Hongkong\nspring.datasource.username=root\nspring.datasource.password=123456\n#?????\nspring.datasource.type=com.zaxxer.hikari.HikariDataSource\nspring.datasource.hikari.maximum-pool-size=15\nspring.datasource.hikari.minimum-idle=5\nspring.datasource.hikari.idle-timeout=30000\n\n# MybatisProperties\nmybatis.mapper-locations=classpath:mapper/*.xml\nmybatis.type-aliases-package=com.nowcoder.community.entity\nmybatis.configuration.useGeneratedKeys=true\nmybatis.configuration.mapUnderscoreToCamelCase=true\n\n#logger\n#logging.level.com.nowcoder.community=debug\n#logging.file=/Users/wenliang_zeng/Desktop/Graduate_Students/Job/JAVA/Project/community/community.log\n\n#MailProperties\nspring.mail.host=smtp.163.com\nspring.mail.username=wenliang__zeng@163.com\nspring.mail.password=LTQRGSQBTCKXBOPP\nspring.mail.properties.mail.smtl.auth=true\nspring.mail.properties.mail.smtp.starttls.enable=true\nspring.mail.properties.mail.smtp.starttls.required=true\n\n#community\ncommunity.path.domain = http://localhost:8080\ncommunity.path.upload = /Users/wenliang_zeng/Desktop/Graduate_Students/Job/JAVA/Project/community/upload\n\n# RedisProperties\nspring.redis.database=11\nspring.redis.host=localhost\nspring.redis.port=6379\n\n# KafkaProperties\nspring.kafka.bootstrap-servers=localhost:9092\nspring.kafka.consumer.group-id=community-consumer-group\nspring.kafka.consumer.enable-auto-commit=true\nspring.kafka.consumer.auto-commit-interval=3000\n\n# Elasticsearch Properties\nspring.data.elasticsearch.cluster-name=nowcoder\n#TCP??\nspring.data.elasticsearch.cluster-nodes=127.0.0.1:9300\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/target/classes/application.properties b/target/classes/application.properties
+--- a/target/classes/application.properties	(revision 61fdd5a5e172462756d9c826d23294f5c2752b44)
++++ b/target/classes/application.properties	(date 1693061587845)
+@@ -53,5 +53,16 @@
+ #TCP??
+ spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300
+ 
++# QuartzProperties
++spring.quartz.job-store-type=jdbc
++spring.quartz.scheduler-name=communityScheduler
++spring.quartz.properties.org.quartz.scheduler.instanceId=AUTO
++spring.quartz.properties.org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
++spring.quartz.properties.org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
++spring.quartz.properties.org.quartz.jobStore.isClustered=true
++spring.quartz.properties.org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool
++spring.quartz.properties.org.quartz.threadPool.threadCount=5
++
++
+ 
+ 
+Index: target/classes/mapper/discusspost-mapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<!DOCTYPE mapper\n        PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\"\n        \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\n<mapper namespace=\"com.nowcoder.community.dao.DiscussPostMapper\">\n    <sql id=\"selectFields\">\n        id, user_id, title, content, type, status, create_time, comment_count, score\n    </sql>\n\n    <sql id=\"insertFields\">\n        user_id, title, content, type, status, create_time, comment_count, score\n    </sql>\n\n    <select id=\"selectDiscussPosts\" resultType=\"DiscussPost\">\n        select <include refid=\"selectFields\"></include>\n        from discuss_post\n        where status != 2\n        <if test=\"userId!=0\">\n            and user_id = #{userId}\n        </if>\n        order by type desc, create_time desc\n        limit #{offset}, #{limit}\n    </select>\n\n    <select id=\"selectDiscussPostRows\" resultType=\"int\">\n        select count(id)\n        from discuss_post\n        where status != 2\n        <if test=\"userId!=0\">\n            and user_id = #{userId}\n        </if>\n    </select>\n\n    <insert id=\"insertDiscussPost\" parameterType=\"DiscussPost\" keyProperty=\"id\">\n        insert into discuss_post(<include refid=\"insertFields\"></include>)\n        values(#{userId},#{title},#{content},#{type},#{status},#{createTime},#{commentCount},#{score})\n    </insert>\n\n    <select id=\"selectDiscussPostById\" resultType=\"DiscussPost\">\n        select <include refid=\"selectFields\"></include>\n        from discuss_post\n        where id = #{id}\n    </select>\n\n    <update id=\"updateCommentCount\">\n        update discuss_post set comment_count = #{commentCount} where id = #{id}\n    </update>\n\n    <update id=\"updateType\">\n        update discuss_post set type = #{type} where id = #{id}\n    </update>\n\n    <update id=\"updateStatus\">\n        update discuss_post set status = #{status} where id = #{id}\n    </update>\n\n</mapper>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/classes/mapper/discusspost-mapper.xml b/target/classes/mapper/discusspost-mapper.xml
+--- a/target/classes/mapper/discusspost-mapper.xml	(revision 61fdd5a5e172462756d9c826d23294f5c2752b44)
++++ b/target/classes/mapper/discusspost-mapper.xml	(date 1693061587824)
+@@ -53,5 +53,9 @@
+     <update id="updateStatus">
+         update discuss_post set status = #{status} where id = #{id}
+     </update>
++    <update id="updateScore">
++        update discuss_post set score = #{score} where id = #{id}
++    </update>
++
+ 
+ </mapper>
