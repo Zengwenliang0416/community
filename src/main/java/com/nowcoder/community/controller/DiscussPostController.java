@@ -1,6 +1,5 @@
 package com.nowcoder.community.controller;
 
-import com.nowcoder.community.dao.DiscussPostMapper;
 import com.nowcoder.community.entity.*;
 import com.nowcoder.community.event.EventProducer;
 import com.nowcoder.community.service.CommentService;
@@ -11,17 +10,10 @@ import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
 import com.nowcoder.community.util.HostHolder;
 import com.nowcoder.community.util.RedisKeyUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.MaskFormatter;
 import java.util.*;
 
 /**
@@ -34,27 +26,29 @@ import java.util.*;
  * @describe 处理帖子相关的操作
  */
 
-@Controller
+@RestController
 @RequestMapping("/discuss")
 public class DiscussPostController implements CommunityConstant {
-    @Autowired
-    private DiscussPostService discussPostService;
-    @Autowired
-    private HostHolder hostHolder;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private CommentService commentService;
-    @Autowired
-    private LikeService likeService;
-    @Autowired
-    private EventProducer eventProducer;
-    @Autowired
-    private RedisTemplate redisTemplate;
+    private final DiscussPostService discussPostService;
+    private final HostHolder hostHolder;
+    private final UserService userService;
+    private final CommentService commentService;
+    private final LikeService likeService;
+    private final EventProducer eventProducer;
+    private final RedisTemplate redisTemplate;
+
+    public DiscussPostController(DiscussPostService discussPostService, HostHolder hostHolder, UserService userService, CommentService commentService, LikeService likeService, EventProducer eventProducer, RedisTemplate redisTemplate) {
+        this.discussPostService = discussPostService;
+        this.hostHolder = hostHolder;
+        this.userService = userService;
+        this.commentService = commentService;
+        this.likeService = likeService;
+        this.eventProducer = eventProducer;
+        this.redisTemplate = redisTemplate;
+    }
 
 
-    @RequestMapping(path = "/add", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/add")
     public String addDiscussPost(String title, String content) {
         // 发帖的前提是我处于登陆状态
         User user = hostHolder.getUser();
@@ -85,7 +79,7 @@ public class DiscussPostController implements CommunityConstant {
     }
 
     // 只要是实体类型，最终MVC都会将这个实体类型存在Model里，在页面上通过Model就可以获取这个数据
-    @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
+    @GetMapping("/detail/{discussPostId}")
     public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model, Page page) {
         // 查询帖子
         DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
@@ -98,14 +92,16 @@ public class DiscussPostController implements CommunityConstant {
         // 优点：没有冗余，比较明确 缺点：效率低（可以通过redis解决）
         User user = userService.findUserById(post.getUserId());
         model.addAttribute("user", user);
+        String likeCountStr = "likeCount";
+        String likeStatusStr = "likeStatus";
 
         // 点赞
         long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, discussPostId);
-        model.addAttribute("likeCount", likeCount);
+        model.addAttribute(likeCountStr, likeCount);
         // 点赞状态
         int likeStatus = hostHolder.getUser() == null ?
                 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_POST, discussPostId);
-        model.addAttribute("likeStatus", likeStatus);
+        model.addAttribute(likeStatusStr, likeStatus);
         // 查询评论的分页信息
         page.setLimit(5);
         page.setPath("/discuss/detail/" + discussPostId);
@@ -128,11 +124,11 @@ public class DiscussPostController implements CommunityConstant {
                 commentVo.put("user", userService.findUserById(comment.getUserId()));
                 // 点赞
                 likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, comment.getId());
-                commentVo.put("likeCount", likeCount);
+                commentVo.put(likeCountStr, likeCount);
                 // 点赞状态
                 likeStatus = hostHolder.getUser() == null ?
                         0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, comment.getId());
-                commentVo.put("likeStatus", likeStatus);
+                commentVo.put(likeStatusStr, likeStatus);
 
                 // 帖子也有评论，在遍历的时候应该把这部分评论也查询出来
                 // 回复列表
@@ -152,11 +148,11 @@ public class DiscussPostController implements CommunityConstant {
                         replyVo.put("target", target);
                         // 点赞
                         likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, reply.getId());
-                        replyVo.put("likeCount", likeCount);
+                        replyVo.put(likeCountStr, likeCount);
                         // 点赞状态
                         likeStatus = hostHolder.getUser() == null ?
                                 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, reply.getId());
-                        replyVo.put("likeStatus", likeStatus);
+                        replyVo.put(likeStatusStr, likeStatus);
                         replyVoList.add(replyVo);
                     }
                 }
@@ -177,8 +173,7 @@ public class DiscussPostController implements CommunityConstant {
      * @param id 帖子的ID
      * @return
      */
-    @RequestMapping(path = "/top",method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/top")
     public String setTop(int id){
         discussPostService.updateType(id,1);
         // 帖子发生变化需要把最新的帖子的数据进行同步，同步到elasticsearch中
@@ -196,8 +191,7 @@ public class DiscussPostController implements CommunityConstant {
      * @param id
      * @return
      */
-    @RequestMapping(path = "/wonderful",method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/wonderful")
     public String setWonderful(int id){
         discussPostService.updateStatus(id,1);
         // 帖子发生变化需要把最新的帖子的数据进行同步，同步到elasticsearch中
@@ -219,8 +213,7 @@ public class DiscussPostController implements CommunityConstant {
      * @param id
      * @return
      */
-    @RequestMapping(path = "/delete",method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping(path = "/delete")
     public String setDelete(int id){
         discussPostService.updateStatus(id,2);
         // 触发删帖事件

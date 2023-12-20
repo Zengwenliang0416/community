@@ -23,10 +23,13 @@ import java.util.*;
  */
 @Service
 public class FollowService implements CommunityConstant {
-    @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
-    private UserService userService;
+    private final RedisTemplate redisTemplate;
+    private final UserService userService;
+
+    public FollowService(RedisTemplate redisTemplate, UserService userService) {
+        this.redisTemplate = redisTemplate;
+        this.userService = userService;
+    }
 
     /*
     关注功能

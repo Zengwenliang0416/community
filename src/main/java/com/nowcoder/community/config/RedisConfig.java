@@ -23,8 +23,8 @@ public class RedisConfig {
     连接注入进template让它能够访问数据库
      */
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory){
-        RedisTemplate<String,Object> template = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
         // 设置key的序列化方式
         template.setKeySerializer(RedisSerializer.string());

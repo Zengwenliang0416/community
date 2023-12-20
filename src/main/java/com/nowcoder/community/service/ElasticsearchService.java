@@ -10,7 +10,6 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,14 +32,18 @@ import java.util.List;
  * @date 2023年07月23日 22:16:09
  * @packageName com.nowcoder.community.service
  * @className ElasticsearchService
- * @describe TODO
+ * @describe 查询相关业务
  */
 @Service
 public class ElasticsearchService {
-    @Autowired
-    private DiscussPostRepository discussPostRepository;
-    @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private final DiscussPostRepository discussPostRepository;
+    private final ElasticsearchTemplate elasticsearchTemplate;
+
+    public ElasticsearchService(DiscussPostRepository discussPostRepository, ElasticsearchTemplate elasticsearchTemplate) {
+        this.discussPostRepository = discussPostRepository;
+        this.elasticsearchTemplate = elasticsearchTemplate;
+    }
+
     public void saveDiscussPost(DiscussPost post){
         discussPostRepository.save(post);
     }
@@ -48,15 +51,17 @@ public class ElasticsearchService {
         discussPostRepository.deleteById(id);
     }
     public Page<DiscussPost> searchDiscussPost(String keyword,int current,int limit){
+        String titleStr = "title";
+        String contentStr = "content";
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery(keyword, "title", "content"))
+                .withQuery(QueryBuilders.multiMatchQuery(keyword, titleStr, contentStr))
                 .withSort(SortBuilders.fieldSort("type").order(SortOrder.DESC))
                 .withSort(SortBuilders.fieldSort("score").order(SortOrder.DESC))
                 .withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC))
                 .withPageable(PageRequest.of(current, limit))
                 .withHighlightFields(
-                        new HighlightBuilder.Field("title").preTags("<em>").postTags("</em>"),
-                        new HighlightBuilder.Field("content").preTags("<em>").postTags("</em>")
+                        new HighlightBuilder.Field(titleStr).preTags("<em>").postTags("</em>"),
+                        new HighlightBuilder.Field(contentStr).preTags("<em>").postTags("</em>")
                 ).build();
         return elasticsearchTemplate.queryForPage(searchQuery, DiscussPost.class, new SearchResultMapper() {
             @Override
@@ -76,10 +81,10 @@ public class ElasticsearchService {
                     String userId = hit.getSourceAsMap().get("userId").toString();
                     post.setUserId(Integer.valueOf(userId));
 
-                    String title = hit.getSourceAsMap().get("title").toString();
+                    String title = hit.getSourceAsMap().get(titleStr).toString();
                     post.setTitle(title);
 
-                    String content = hit.getSourceAsMap().get("content").toString();
+                    String content = hit.getSourceAsMap().get(contentStr).toString();
                     post.setContent(content);
 
                     String status = hit.getSourceAsMap().get("status").toString();
@@ -92,7 +97,7 @@ public class ElasticsearchService {
                     post.setCommentCount(Integer.valueOf(commentCount));
 
                     // 处理高亮显示的结果
-                    HighlightField titleField = hit.getHighlightFields().get("title");
+                    HighlightField titleField = hit.getHighlightFields().get(titleStr);
                     if (titleField != null) {
                         post.setTitle(titleField.getFragments()[0].toString());
                     }

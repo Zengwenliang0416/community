@@ -1,8 +1,6 @@
 package com.nowcoder.community.service;
 
 import com.nowcoder.community.util.RedisKeyUtil;
-import org.springframework.beans.SimpleTypeConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisStringCommands;
@@ -24,14 +22,17 @@ import java.util.List;
  * @date 2023年07月26日 21:46:00
  * @packageName com.nowcoder.community.service
  * @className DataService
- * @describe TODO
+ * @describe 处理用户登陆数据
  */
 @Service
 public class DataService {
-    @Autowired
-    private RedisTemplate redisTemplate;
+    private final RedisTemplate redisTemplate;
     // 需要用到日期，提前格式化
     private SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+
+    public DataService(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 将指定的ip计入UV

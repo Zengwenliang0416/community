@@ -88,8 +88,8 @@ public class LoginController implements CommunityConstant {
         return "/site/operate-result";
     }
 
-    @RequestMapping(path = "/kaptcha",method = RequestMethod.GET)
-    public void getKaptcha(HttpServletResponse response/*, HttpSession session*/){
+    @RequestMapping(path = "/kaptcha", method = RequestMethod.GET)
+    public void getKaptcha(HttpServletResponse response/*, HttpSession session*/) {
         // 生成验证码
         String text = kaptchaProducer.createText();
         BufferedImage image = kaptchaProducer.createImage(text);
@@ -97,55 +97,56 @@ public class LoginController implements CommunityConstant {
 //        session.setAttribute("kaptcha",text);
         // 将验证码存到redis中，存在redis中需要一个key，而构建这个key需要这个验证码的归属者
         String kaptchaOwner = CommunityUtil.generateUUID();
-        Cookie cookie = new Cookie("kaptchaOwner",kaptchaOwner);
+        Cookie cookie = new Cookie("kaptchaOwner", kaptchaOwner);
         cookie.setMaxAge(60);
         cookie.setPath(contextPath);
         response.addCookie(cookie);
         // 将验证码存入redis
         String redisKey = RedisKeyUtil.getKaptchaKey(kaptchaOwner);
-        redisTemplate.opsForValue().set(redisKey,text,60, TimeUnit.SECONDS );
+        redisTemplate.opsForValue().set(redisKey, text, 60, TimeUnit.SECONDS);
         //将图片传输给浏览器
         response.setContentType("image/png");
         try {
             OutputStream os = response.getOutputStream();//获取输出流
-            ImageIO.write(image,"png",os);
+            ImageIO.write(image, "png", os);
         } catch (IOException e) {
-            logger.error("响应验证码失败："+e.getMessage());
+            logger.error("响应验证码失败：" + e.getMessage());
         }
     }
-    @RequestMapping(path = "/login",method = RequestMethod.POST)// 表单提交数据给服务器，需要将数据存在数据库中，使用POST请求。
-    public String login(String username, String password,String code,boolean rememberme,
-                        Model model/*,HttpSession session*/,HttpServletResponse response,
-                        @CookieValue("kaptchaOwner") String kaptchaOwner){
+
+    @RequestMapping(path = "/login", method = RequestMethod.POST)// 表单提交数据给服务器，需要将数据存在数据库中，使用POST请求。
+    public String login(String username, String password, String code, boolean rememberme,
+                        Model model/*,HttpSession session*/, HttpServletResponse response,
+                        @CookieValue("kaptchaOwner") String kaptchaOwner) {
         // 检查验证码
 //        String kaptcha = (String)session.getAttribute("kaptcha");
         String kaptcha = null;
-        if (StringUtils.isNoneBlank(kaptchaOwner)){
+        if (StringUtils.isNoneBlank(kaptchaOwner)) {
             String redisKey = RedisKeyUtil.getKaptchaKey(kaptchaOwner);
             kaptcha = (String) redisTemplate.opsForValue().get(redisKey);
         }
-        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)){
-            model.addAttribute("codeMsg","验证码不正确");
+        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
+            model.addAttribute("codeMsg", "验证码不正确");
             return "/site/login";
         }
         // 检查账号密码
         int expiredSeconds = rememberme ? REMEMBER_EXPIRED_SECONDS : DEFAULT_EXPIRED_SECONDS;
-        Map<String,Object> map = userService.login(username,password,expiredSeconds);
-        if (map.containsKey("ticket")){
-            Cookie cookie = new Cookie("ticket",map.get("ticket").toString());
+        Map<String, Object> map = userService.login(username, password, expiredSeconds);
+        if (map.containsKey("ticket")) {
+            Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
             cookie.setPath(contextPath);
             cookie.setMaxAge(expiredSeconds);
             response.addCookie(cookie);
             return "redirect:/index";
-        }else {
-            model.addAttribute("usernameMsg",map.get("usernameMsg"));
-            model.addAttribute("passwordMsg",map.get("passwordMsg"));
+        } else {
+            model.addAttribute("usernameMsg", map.get("usernameMsg"));
+            model.addAttribute("passwordMsg", map.get("passwordMsg"));
             return "/site/login";
         }
     }
 
-    @RequestMapping(path = "/logout",method = RequestMethod.GET)
-    public String logout(@CookieValue("ticket") String ticket){
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
         SecurityContextHolder.clearContext();
         return "redirect:/login";

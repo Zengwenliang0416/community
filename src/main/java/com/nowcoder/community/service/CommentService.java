@@ -4,7 +4,6 @@ import com.nowcoder.community.dao.CommentMapper;
 import com.nowcoder.community.entity.Comment;
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.SensitiveFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,25 +19,31 @@ import java.util.List;
  * @date 2023年07月13日 12:04:08
  * @packageName com.nowcoder.community.service
  * @className CommentService
- * @describe TODO
+ * @describe 评论相关业务
  */
 @Service
 public class CommentService implements CommunityConstant {
-    @Autowired
-    private CommentMapper commentMapper;
-    @Autowired
-    private SensitiveFilter sensitiveFilter;
-    @Autowired
-    private DiscussPostService discussPostService;
-    public List<Comment> findCommentsByEntity(int entityType,int entityId,int offset,int limit){
-        return commentMapper.selectCommentsByEntity(entityType,entityId,offset,limit);
+    private final CommentMapper commentMapper;
+    private final SensitiveFilter sensitiveFilter;
+    private final DiscussPostService discussPostService;
+
+    public CommentService(CommentMapper commentMapper, SensitiveFilter sensitiveFilter, DiscussPostService discussPostService) {
+        this.commentMapper = commentMapper;
+        this.sensitiveFilter = sensitiveFilter;
+        this.discussPostService = discussPostService;
     }
-    public int findCommentCount(int entityType,int entityId){
-        return commentMapper.selectCountByEntity(entityType,entityId);
+
+    public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
+        return commentMapper.selectCommentsByEntity(entityType, entityId, offset, limit);
     }
+
+    public int findCommentCount(int entityType, int entityId) {
+        return commentMapper.selectCountByEntity(entityType, entityId);
+    }
+
     // 处理增加评论的业务
-    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.REQUIRED)
-    public int addComment(Comment comment){
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    public int addComment(Comment comment) {
         if (comment == null) {
             throw new IllegalArgumentException("参数不能为空");
         }
@@ -50,13 +55,14 @@ public class CommentService implements CommunityConstant {
         // 更新帖子评论数量
         // 首先判断当前类型是帖子还是回复
         if (comment.getEntityType() == ENTITY_TYPE_POST) {
-            int count = commentMapper.selectCountByEntity(comment.getEntityType(),comment.getEntityId());
+            int count = commentMapper.selectCountByEntity(comment.getEntityType(), comment.getEntityId());
             // 根据帖子ID更新评论得到数量
-            discussPostService.updateCommentCount(comment.getEntityId(),count);
+            discussPostService.updateCommentCount(comment.getEntityId(), count);
         }
         return rows;
     }
-    public Comment findCommentByID(int id){
+
+    public Comment findCommentByID(int id) {
         return commentMapper.selectCommentById(id);
     }
 

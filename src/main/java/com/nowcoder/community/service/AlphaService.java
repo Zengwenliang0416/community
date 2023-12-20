@@ -29,12 +29,15 @@ import java.util.Date;
 @Service
 public class AlphaService {
 
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private DiscussPostMapper discussPostMapper;
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+    private final UserMapper userMapper;
+    private final DiscussPostMapper discussPostMapper;
+    private final TransactionTemplate transactionTemplate;
+
+    public AlphaService(UserMapper userMapper, DiscussPostMapper discussPostMapper, TransactionTemplate transactionTemplate) {
+        this.userMapper = userMapper;
+        this.discussPostMapper = discussPostMapper;
+        this.transactionTemplate = transactionTemplate;
+    }
 
     // 传播机制：
     // REQUIRED：支持当前事务，如果不存在则创建新事务

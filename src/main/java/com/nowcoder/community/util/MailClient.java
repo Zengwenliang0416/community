@@ -17,11 +17,14 @@ import javax.mail.internet.MimeMessage;
 @Component
 public class MailClient {
     private static final Logger logger = LoggerFactory.getLogger(MailClient.class);
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String from;
+
+    public MailClient(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public void sendMail(String to, String subject, String content){
         try {

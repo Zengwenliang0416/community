@@ -63,4 +63,6 @@ public interface CommunityConstant {
      * 权限：版主
      */
     String AUTHORITY_MODERATOR = "moderator";
+    String MESSAGE_EMPTY = "消息的内容为空！";
+    String MESSAGE_FORMAT_ERROR = "消息格式错误！";
 }

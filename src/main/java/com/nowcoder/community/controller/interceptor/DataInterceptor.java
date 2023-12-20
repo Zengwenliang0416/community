@@ -3,7 +3,6 @@ package com.nowcoder.community.controller.interceptor;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.DataService;
 import com.nowcoder.community.util.HostHolder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -17,14 +16,18 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2023年07月26日 22:13:18
  * @packageName com.nowcoder.community.controller.interceptor
  * @className DataInterceptor
- * @describe TODO
+ * @describe 处理数据统计
+ *
  */
 @Component
 public class DataInterceptor implements HandlerInterceptor {
-    @Autowired
-    private DataService dataService;
-    @Autowired
-    private HostHolder hostHolder;
+    private final DataService dataService;
+    private final HostHolder hostHolder;
+
+    public DataInterceptor(DataService dataService, HostHolder hostHolder) {
+        this.dataService = dataService;
+        this.hostHolder = hostHolder;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
